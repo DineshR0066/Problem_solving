@@ -34,3 +34,19 @@ var longestCommonPrefix = function(strs) {
     }
     return result;
 };
+
+// LEETCODE 26 : REMOVE DUPLICATE FROM SORTED ARRAY
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+    let i =0 
+    for( let j = 0 ; j<nums.length ;j++ ){
+        if(nums[ i] != nums[j ]){
+            nums[++i] = nums [j]
+        }
+    }
+    return i + 1;
+};
