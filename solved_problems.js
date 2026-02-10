@@ -50,3 +50,53 @@ var removeDuplicates = function(nums) {
     }
     return i + 1;
 };
+
+//LEETCODE 53 : MAXIMUM SUBARRAY
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+function maxSubArray (nums) {
+    let currentSum = 0;
+    let maximumSum = nums[0];
+    for (let element of nums) {
+        currentSum = currentSum + element;
+        if (currentSum > maximumSum) {
+            maximumSum = currentSum;
+        }
+        if (currentSum < 0) {
+            currentSum = 0;
+        }
+    }
+    return maximumSum;
+};
+
+//LEETCODE 11 : CONTAINER WITH MOST WATER
+
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var maxArea = function (height) {
+    let container = 0;
+    let maximumContainer = 0;
+    let length = height.length;
+    let i = 0;
+    let j = length-1;
+    while (i < j) {
+        container = Math.min(height[i], height[j]) * (j - i);
+        if (height[i] > height[j]) {
+            j--;
+        }
+        else {
+            i++;
+        }
+        if(maximumContainer < container){
+            maximumContainer = container;
+        }
+    }
+
+    return maximumContainer;
+
+};
