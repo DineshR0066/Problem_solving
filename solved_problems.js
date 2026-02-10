@@ -100,3 +100,79 @@ var maxArea = function (height) {
     return maximumContainer;
 
 };
+
+// LEETCODE 274 : H-INDEX
+
+/**
+ * @param {number[]} citations
+ * @return {number}
+ */
+var hIndex = function (citations) {
+    citations.sort((a, b) => b - a)
+    let value = 0;
+    for (let i = 0; i < citations.length; i++) {
+        if (citations[i] >= i+1 ){
+            value++;
+        }
+    }
+    return value;
+
+};
+
+// LEETCODE 135 :CANDY
+
+/**
+ * @param {number[]} ratings
+ * @return {number}
+ */
+var candy = function (ratings) {
+    let children = ratings.length;
+    const candies = [];
+    candies.length = children;
+    candies.fill(1);
+    for (let i = 1; i < children ; i++) {
+        if (ratings[i] > ratings[i - 1]) {
+            candies[i] = candies[i - 1] + 1;
+        }
+    }
+    let count = 0;
+    for (let i = children - 1; i > 0; i--) {
+        if (ratings[i - 1] > ratings[i]) {
+            candies[i - 1] = Math.max(candies[i - 1], candies[i] + 1);
+        }
+    }
+    for (let element of candies) {
+        count += element;
+    }
+    return count;
+};
+
+// LEETCODE 128 : LONGEST CONSECUTIVE SEQUENCE
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var longestConsecutive = function (nums) {
+    if ( !nums.length ){
+        return 0;
+    }
+    let continous = 1;
+    let longContinous = 1;
+    nums.sort((a, b) => a - b );
+    console.log(nums);
+    for (let iter = 0; iter < nums.length - 1; iter++) {
+        if (nums[iter] + 1 === nums[iter + 1]) {
+            continous += 1;
+            
+        }
+        else if ( nums[iter] === nums[iter + 1]) {
+            continue;
+        }
+        else{
+            continous = 1;
+        }
+        longContinous = Math.max(longContinous, continous ) ;
+    }
+    return longContinous;
+};
